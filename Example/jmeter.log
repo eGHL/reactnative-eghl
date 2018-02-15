@@ -1,0 +1,51 @@
+2018-02-14 11:40:16,983 INFO o.a.j.u.JMeterUtils: Setting Locale to en_US
+2018-02-14 11:40:16,997 INFO o.a.j.JMeter: Loading user properties from: /Users/arifjusoh/Downloads/apache-jmeter-3.3/bin/user.properties
+2018-02-14 11:40:16,998 INFO o.a.j.JMeter: Loading system properties from: /Users/arifjusoh/Downloads/apache-jmeter-3.3/bin/system.properties
+2018-02-14 11:40:17,005 INFO o.a.j.JMeter: Copyright (c) 1998-2017 The Apache Software Foundation
+2018-02-14 11:40:17,005 INFO o.a.j.JMeter: Version 3.3 r1808647
+2018-02-14 11:40:17,005 INFO o.a.j.JMeter: java.version=1.8.0_144
+2018-02-14 11:40:17,005 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2018-02-14 11:40:17,005 INFO o.a.j.JMeter: os.name=Mac OS X
+2018-02-14 11:40:17,005 INFO o.a.j.JMeter: os.arch=x86_64
+2018-02-14 11:40:17,006 INFO o.a.j.JMeter: os.version=10.12.6
+2018-02-14 11:40:17,006 INFO o.a.j.JMeter: file.encoding=UTF-8
+2018-02-14 11:40:17,006 INFO o.a.j.JMeter: Max memory     =536870912
+2018-02-14 11:40:17,006 INFO o.a.j.JMeter: Available Processors =8
+2018-02-14 11:40:17,013 INFO o.a.j.JMeter: Default Locale=English (United States)
+2018-02-14 11:40:17,014 INFO o.a.j.JMeter: JMeter  Locale=English (United States)
+2018-02-14 11:40:17,014 INFO o.a.j.JMeter: JMeterHome=/Users/arifjusoh/Downloads/apache-jmeter-3.3
+2018-02-14 11:40:17,014 INFO o.a.j.JMeter: user.dir  =/Users/arifjusoh/Documents/Github/eghl/reactnative-eghl/Example
+2018-02-14 11:40:17,014 INFO o.a.j.JMeter: PWD       =/Users/arifjusoh/Documents/Github/eghl/reactnative-eghl/Example
+2018-02-14 11:40:17,026 INFO o.a.j.JMeter: IP: 192.168.88.109 Name: arifjusoh FullName: 192.168.88.109
+2018-02-14 11:40:20,484 INFO o.a.j.g.a.LookAndFeelCommand: Using look and feel: com.apple.laf.AquaLookAndFeel [Mac OS X, System]
+2018-02-14 11:40:20,490 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2018-02-14 11:40:21,073 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2018-02-14 11:40:21,073 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2018-02-14 11:40:22,210 INFO o.a.j.g.u.MenuFactory: Skipping org.apache.jmeter.assertions.BSFAssertion
+2018-02-14 11:40:23,030 INFO o.a.j.g.u.MenuFactory: Skipping org.apache.jmeter.extractor.BSFPostProcessor
+2018-02-14 11:40:23,080 INFO o.a.j.g.u.MenuFactory: Skipping org.apache.jmeter.modifiers.BSFPreProcessor
+2018-02-14 11:40:23,129 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-02-14 11:40:23,129 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-02-14 11:40:23,130 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-02-14 11:40:23,130 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-02-14 11:40:23,130 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2018-02-14 11:40:23,130 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2018-02-14 11:40:23,631 INFO o.a.j.e.KeyToolUtils: keytool found at 'keytool'
+2018-02-14 11:40:23,632 INFO o.a.j.p.h.p.ProxyControl: HTTP(S) Test Script Recorder SSL Proxy will use keys that support embedded 3rd party resources in file /Users/arifjusoh/Downloads/apache-jmeter-3.3/bin/proxyserver.jks
+2018-02-14 11:40:23,784 INFO o.a.j.g.u.MenuFactory: Skipping org.apache.jmeter.protocol.java.sampler.BSFSampler
+2018-02-14 11:40:23,823 INFO o.a.j.s.FileServer: Default base='/Users/arifjusoh/Documents/Github/eghl/reactnative-eghl/Example'
+2018-02-14 11:40:23,919 INFO o.a.j.g.u.MenuFactory: Skipping org.apache.jmeter.protocol.mongodb.config.MongoSourceElement
+2018-02-14 11:40:23,919 INFO o.a.j.g.u.MenuFactory: Skipping org.apache.jmeter.protocol.mongodb.sampler.MongoScriptSampler
+2018-02-14 11:40:24,229 INFO o.a.j.g.u.MenuFactory: Skipping org.apache.jmeter.timers.BSFTimer
+2018-02-14 11:40:24,259 INFO o.a.j.g.u.MenuFactory: Skipping org.apache.jmeter.visualizers.BSFListener
+2018-02-14 11:40:24,415 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2018-02-14 11:40:24,415 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2018-02-14 11:40:24,415 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2018-02-14 11:40:24,415 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2018-02-14 11:41:08,334 INFO o.a.j.g.a.Load: Loading file: /Users/arifjusoh/Documents/bitbucket/arifall.my - shutbr/jmeter/arifall-gateway.jmx
+2018-02-14 11:41:08,334 INFO o.a.j.s.FileServer: Set new base='/Users/arifjusoh/Documents/bitbucket/arifall.my - shutbr/jmeter'
+2018-02-14 11:41:08,505 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2018-02-14 11:41:08,528 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2018-02-14 11:41:08,529 INFO o.a.j.s.SaveService: Using SaveService properties version 3.2
+2018-02-14 11:41:08,533 INFO o.a.j.s.SaveService: Loading file: /Users/arifjusoh/Documents/bitbucket/arifall.my - shutbr/jmeter/arifall-gateway.jmx
+2018-02-14 11:41:08,622 INFO o.a.j.s.FileServer: Set new base='/Users/arifjusoh/Documents/bitbucket/arifall.my - shutbr/jmeter'
