@@ -19,21 +19,20 @@
 RCT_EXPORT_MODULE(EGHL);
 RCT_EXPORT_METHOD(execute:(NSString *)paymentInfoJson)
 {
-    RCTLogInfo(@"Info received %@", paymentInfoJson);
-    
     NSError *error;
 
     NSDictionary * responseDict = [NSJSONSerialization JSONObjectWithData:[paymentInfoJson dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
     
-    RCTLogInfo(@"Info received(Dict): %@", responseDict);
-    
-    [self processPayment:responseDict];
+    if (error) {
+        RCTLogInfo(@"Error in Parsing:%@ \nerror: %@", paymentInfoJson, error.localizedDescription);
+    } else {
+//        RCTLogInfo(@"Info received(Dict): %@", responseDict);
+        [self processPayment:responseDict];
+    }
 }
-
 
 - (void)processPayment:(NSDictionary *)info {
     if ([info[@"TransactionType"] isKindOfClass:[NSString class]]) {
-        RCTLogInfo(@"TransactionType: %@", info[@"TransactionType"]);
         NSString * transactionType = info[@"TransactionType"];
        
         if ([[transactionType lowercaseString] isEqualToString:@"sale"]) {
@@ -58,8 +57,6 @@ RCT_EXPORT_METHOD(execute:(NSString *)paymentInfoJson)
     
     paypram.CustEmail = validString(info[@"CustEmail"]);
     paypram.CustName = validString(info[@"CustName"]);
-    //    paypram.MerchantReturnURL = validString(info[@"TransactionType"]);
-    //    paypram.MerchantReturnURL = validString(info[@"TransactionType"]);
     paypram.MerchantReturnURL = validString(info[@"MerchantReturnURL"]);
     paypram.MerchantCallBackURL = validString(info[@"MerchantCallBackURL"]);
     paypram.CustPhone = validString(info[@"CustPhone"]);
@@ -70,9 +67,9 @@ RCT_EXPORT_METHOD(execute:(NSString *)paymentInfoJson)
     paypram.Amount = validString(info[@"Amount"]);
     paypram.CurrencyCode = validString(info[@"CurrencyCode"]);
 
-    NSString * paymentID = [self generateNewPaymentID];
-    paypram.PaymentID = paymentID;
-    paypram.OrderNumber = paymentID;
+    paypram.PaymentID = validString(info[@"PaymentID"]);
+    paypram.OrderNumber = validString(info[@"OrderNumber"]);
+    
     paypram.shouldTriggerReturnURL = validBool(info[@"shouldTriggerReturnURL"]) ;
     paypram.realHost = validBool(info[@"prod"]);
 
@@ -84,7 +81,7 @@ RCT_EXPORT_METHOD(execute:(NSString *)paymentInfoJson)
 
     UIViewController *vc = keyWindow.rootViewController;
     dispatch_async(dispatch_get_main_queue(), ^{
-        RCTLogInfo(@"TransactionType: %@", [ShowViewController displayRequestParam:paypram]);
+//        RCTLogInfo(@"TransactionType: %@", [ShowViewController displayRequestParam:paypram]);
 
         ShowViewController * payVC = [[ShowViewController alloc] initWithValue:paypram];
         payVC.eghlpay = [[EGHLPayment alloc] init];

@@ -21,15 +21,19 @@ const instructions = Platform.select({
   android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
-
-const eGHLReturnEmitter = new NativeEventEmitter(NativeModules.EGHLReturn);
-var subscription = eGHLReturnEmitter.addListener(
-  'eGHLReturn', (returnObj) => {
-    if (returnObj.status) {
-      alert(JSON.stringify(returnObj.result));
-    }
+if (Platform.OS === 'ios') {
+  const eGHLReturnEmitter = new NativeEventEmitter(NativeModules.EGHLReturn);
+    var subscription = eGHLReturnEmitter.addListener(
+    'eGHLReturn', function(returnObj) {
+      console.log(returnObj.status);
+      if (returnObj.status) {
+        alert(JSON.stringify(returnObj.result));
+      } else {
+        alert(JSON.stringify(returnObj.message));
+      }
   });
 
+} 
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -37,9 +41,16 @@ export default class App extends Component<Props> {
   //   alert("Status:"+result.status);
   // }
 // (sdkReturn) => console.log(sdkReturn.PaymentID)
+  componentWillUnmount(){
+    if (!subscription) {
+      subscription.remove();
+    }
+  }
 
   onPressPay(){
     var eGHL = NativeModules.EGHL;
+
+    var paymentId = "DEMO" + new Date().getTime();
 
     if (eGHL) {
       var paymentInfo = {
@@ -49,17 +60,18 @@ export default class App extends Component<Props> {
         "MerchantCallBackURL": "http://arifall.my/eGHL/mp_callback.php",
         "PaymentDesc": "Testing Payment",
         "CurrencyCode": "MYR",
-        "MerchantReturnURL": "http://arifall.my/eGHL/success_page.php",
-        "PaymentID": "AJ201707101949136389",
+        "MerchantReturnURL": "SDK",
+        "PaymentID": paymentId,
         "LanguageCode": "EN",
         "CustName": "Arif",
         "ServiceID": "SIT",
         "Password": "sit12345",
         "TransactionType": "SALE",
         "MerchantName": "eGHL Payment Testing",
-        "OrderNumber": "AJ201707101949136389",
+        "OrderNumber": paymentId,
         "CustPhone": "0123456789",
-        "prod": false
+        "PageTimeout":"600",
+        "prod": false      
       }
 
       eGHL.execute(JSON.stringify(paymentInfo));

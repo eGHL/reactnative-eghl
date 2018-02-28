@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB985D87203EB0BE007231BB /* libEGHLPayment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB985D86203EB0BE007231BB /* libEGHLPayment.a */; };
 		CBAAF59C2034C9F9007B3829 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAAF59B2034C9F9007B3829 /* ShowViewController.m */; };
 		CBBF98AF203432C800F44B2F /* RCTEghl.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBF98AE203432C800F44B2F /* RCTEghl.m */; };
 		CBBF98B0203432C800F44B2F /* RCTEghl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBBF98AD203432C800F44B2F /* RCTEghl.h */; };
-		CBBF98B82034331600F44B2F /* libEGHLPayment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBBF98B72034331600F44B2F /* libEGHLPayment.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,13 +27,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CB985D86203EB0BE007231BB /* libEGHLPayment.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEGHLPayment.a; sourceTree = "<group>"; };
 		CBAAF59A2034C9F8007B3829 /* ShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
 		CBAAF59B2034C9F9007B3829 /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
 		CBBF98AA203432C800F44B2F /* libRCTEghl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTEghl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBBF98AD203432C800F44B2F /* RCTEghl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTEghl.h; sourceTree = "<group>"; };
 		CBBF98AE203432C800F44B2F /* RCTEghl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTEghl.m; sourceTree = "<group>"; };
 		CBBF98B62034331600F44B2F /* EGHLPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGHLPayment.h; sourceTree = "<group>"; };
-		CBBF98B72034331600F44B2F /* libEGHLPayment.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEGHLPayment.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBBF98B82034331600F44B2F /* libEGHLPayment.a in Frameworks */,
+				CB985D87203EB0BE007231BB /* libEGHLPayment.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +72,7 @@
 				CBBF98B62034331600F44B2F /* EGHLPayment.h */,
 				CBAAF59A2034C9F8007B3829 /* ShowViewController.h */,
 				CBAAF59B2034C9F9007B3829 /* ShowViewController.m */,
-				CBBF98B72034331600F44B2F /* libEGHLPayment.a */,
+				CB985D86203EB0BE007231BB /* libEGHLPayment.a */,
 			);
 			path = RCTEghl;
 			sourceTree = "<group>";

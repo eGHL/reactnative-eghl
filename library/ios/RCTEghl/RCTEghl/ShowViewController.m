@@ -2,8 +2,8 @@
 //  ShowViewController.m
 //  eghl
 //
-//  Created by mac on 15/1/27.
-//  Copyright (c) 2015年 eghl. All rights reserved.
+//  Created by Arif Jusoh on 14/02/2018.
+//  Copyright © 2018 GHL ePayments Sdn Bhd. All rights reserved.
 //
 
 #import "ShowViewController.h"
@@ -57,11 +57,6 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-//    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
-//        self.edgesForExtendedLayout = UIRectEdgeNone;
-//    }
 
     UIButton * button = [[UIButton alloc] initWithFrame:CGRectZero];
     [button setImage:[UIImage imageNamed:@"navigationItemBack"] forState:UIControlStateNormal];
@@ -76,7 +71,6 @@ typedef enum {
     [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-//    self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
 
     /* ------------------
      * [OPTIONAL]
@@ -106,10 +100,9 @@ typedef enum {
     // ------------------
     
     [self.view addSubview:self.eghlpay];
+
     [self.eghlpay paymentAPI:self.paypram successBlock:^(PaymentRespPARAM * result) {
         if ([result.rawResponseDict isKindOfClass:[NSDictionary class]]) {
-            NSLog(@"result.rawResponseDict:%@",result.rawResponseDict);
-            
             [self dismissViewControllerAnimated:YES completion:^{
                 CallbackToJS *callback = [CallbackToJS allocWithZone: nil];
                 
@@ -120,12 +113,12 @@ typedef enum {
             }];
         }
     } failedBlock:^(NSString *errorCode, NSString *errorData, NSError * error) {
-        NSLog(@"errordata:%@ (%@)", errorData, errorCode);
+        RCTLogInfo(@"errordata:%@ (%@)", errorData, errorCode);
         
         if (error) {
             NSString * urlstring = [error userInfo][@"NSErrorFailingURLKey"];
             if (urlstring) {
-                NSLog(@"NSErrorFailingURLKey:%@",urlstring);
+                RCTLogInfo(@"NSErrorFailingURLKey:%@",urlstring);
             }
         }
         

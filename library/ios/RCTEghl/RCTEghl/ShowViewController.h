@@ -2,8 +2,8 @@
 //  ShowViewController.h
 //  eghl
 //
-//  Created by mac on 15/1/27.
-//  Copyright (c) 2015年 eghl. All rights reserved.
+//  Created by Arif Jusoh on 14/02/2018.
+//  Copyright © 2018 GHL ePayments Sdn Bhd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
