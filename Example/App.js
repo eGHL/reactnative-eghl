@@ -12,6 +12,7 @@ import {
   Alert,
   View,
   NativeEventEmitter,
+  DeviceEventEmitter,
   NativeModules
 } from 'react-native';
 
@@ -37,10 +38,27 @@ if (Platform.OS === 'ios') {
 
 type Props = {};
 export default class App extends Component<Props> {
-  // onReturn = (result) => {
-  //   alert("Status:"+result.status);
-  // }
-// (sdkReturn) => console.log(sdkReturn.PaymentID)
+  componentWillMount(){
+    if (Platform.OS === 'android') {
+      DeviceEventEmitter.addListener('eGHLReturn', function(e) {
+        console.log(e);
+
+        if (e.status) {
+          var jsonObj = JSON.parse(e.json);
+          console.log(jsonObj);
+
+          setTimeout(function(){
+            Alert.alert('Demo App', jsonObj["TxnMessage"], [{ text: 'OK' }]);
+          },500);
+        } else {
+          setTimeout(function(){
+            Alert.alert('Demo App', e.message, [{ text: 'OK' }]);
+          },500);
+
+        }
+      });
+    }
+  }
   componentWillUnmount(){
     if (!subscription) {
       subscription.remove();

@@ -1,7 +1,9 @@
 package com.example;
 
 import android.app.Application;
+import android.content.Intent;
 
+import com.eghl.module.EGHLReactPackage;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -22,7 +24,8 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage()
+          new MainReactPackage(),
+              new EGHLReactPackage()
       );
     }
 
