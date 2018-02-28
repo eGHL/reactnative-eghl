@@ -72,22 +72,25 @@ export default class App extends Component<Props> {
 
     if (eGHL) {
       var paymentInfo = {
+        "TransactionType": "SALE",
         "Amount": "1.00",
-        "PymtMethod": "ANY",
-        "CustEmail": "arif.jusoh@ghl.com",
-        "MerchantCallBackURL": "http://arifall.my/eGHL/mp_callback.php",
-        "PaymentDesc": "Testing Payment",
         "CurrencyCode": "MYR",
-        "MerchantReturnURL": "SDK",
         "PaymentID": paymentId,
-        "LanguageCode": "EN",
-        "CustName": "Arif",
+        "OrderNumber": paymentId,
+        "PaymentDesc": "Testing Payment",
+        "PymtMethod": "ANY",
+
+        "CustEmail": "somebody@someone.com",
+        "CustName": "Somebody",
+        "CustPhone": "0123456789",
+
+        "MerchantReturnURL": "SDK",
+        "MerchantCallBackURL": "http://....",
+
         "ServiceID": "SIT",
         "Password": "sit12345",
-        "TransactionType": "SALE",
-        "MerchantName": "eGHL Payment Testing",
-        "OrderNumber": paymentId,
-        "CustPhone": "0123456789",
+
+        "LanguageCode": "EN",
         "PageTimeout":"600",
         "prod": false      
       }

@@ -9,6 +9,7 @@
 #import "ShowViewController.h"
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
+#import <React/RCTLog.h>
 
 @interface CallbackToJS: RCTEventEmitter <RCTBridgeModule>
 @end
