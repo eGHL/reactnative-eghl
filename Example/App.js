@@ -60,7 +60,7 @@ export default class App extends Component<Props> {
     }
   }
   componentWillUnmount(){
-    if (!subscription) {
+    if (subscription) {
       subscription.remove();
     }
   }
