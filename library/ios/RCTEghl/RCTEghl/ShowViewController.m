@@ -103,16 +103,21 @@ typedef enum {
     [self.view addSubview:self.eghlpay];
 
     [self.eghlpay paymentAPI:self.paypram successBlock:^(PaymentRespPARAM * result) {
-        if ([result.rawResponseDict isKindOfClass:[NSDictionary class]]) {
-            [self dismissViewControllerAnimated:YES completion:^{
-                CallbackToJS *callback = [CallbackToJS allocWithZone: nil];
-                
-                [callback postEvent:@{
-                                      @"status":@YES,
-                                      @"result":result.rawResponseDict
-                                      }];
-            }];
-        }
+        [self dismissViewControllerAnimated:YES completion:^{
+            CallbackToJS *callback = [CallbackToJS allocWithZone: nil];
+            
+           NSMutableDictionary * resultMutDict = [@{
+                                             @"status":@YES
+                                             } mutableCopy];
+            
+            if ([result.rawResponseDict isKindOfClass:[NSDictionary class]]) {
+                resultMutDict[@"result"] = result.rawResponseDict;
+            } else if ([result.TxnMessage isKindOfClass:[NSString class]]) {
+                resultMutDict[@"message"] = result.TxnMessage;
+            }
+
+            [callback postEvent:resultMutDict];
+        }];
     } failedBlock:^(NSString *errorCode, NSString *errorData, NSError * error) {
         RCTLogInfo(@"errordata:%@ (%@)", errorData, errorCode);
         

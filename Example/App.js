@@ -27,7 +27,7 @@ if (Platform.OS === 'ios') {
     var subscription = eGHLReturnEmitter.addListener(
     'eGHLReturn', function(returnObj) {
       console.log(returnObj.status);
-      if (returnObj.status) {
+      if (returnObj.status && typeof returnObj.result != 'undefined') {
         alert(JSON.stringify(returnObj.result));
       } else {
         alert(JSON.stringify(returnObj.message));
