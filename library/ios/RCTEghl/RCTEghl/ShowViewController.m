@@ -110,12 +110,10 @@ typedef enum {
                                              @"status":@YES
                                              } mutableCopy];
             
-            if ([result.rawResponseDict isKindOfClass:[NSDictionary class]]) {
-                resultMutDict[@"result"] = result.rawResponseDict;
-            } else if ([result.TxnMessage isKindOfClass:[NSString class]]) {
-                resultMutDict[@"message"] = result.TxnMessage;
-            }
-
+            // serialize jsonstring to JSON
+            NSString *jsonString = [ShowViewController displayResponseParam:result];
+            resultMutDict[@"result"] = jsonString;
+            
             [callback postEvent:resultMutDict];
         }];
     } failedBlock:^(NSString *errorCode, NSString *errorData, NSError * error) {
@@ -186,14 +184,16 @@ typedef enum {
 }
 
 #pragma mark - convenient method
-+ (NSString *)displayResponseParam:(PaymentRespPARAM *)respParam {
++ (NSData *)displayResponseParam:(PaymentRespPARAM *)respParam {
     NSMutableString * message = [NSMutableString string];
+    
+    [message appendFormat:@"{"];
     
     for (NSString * key in @[@"Amount",@"AuthCode",@"BankRefNo",@"CardExp",@"CardHolder",@"CardNoMask",@"CardType",@"CurrencyCode",@"EPPMonth",@"EPP_YN",@"HashValue",@"HashValue2",@"IssuingBank",@"OrderNumber",@"PromoCode",@"PromoOriAmt",@"Param6",@"Param7",@"PaymentID",@"PymtMethod",@"QueryDesc",@"ServiceID",@"SessionID",@"SettleTAID",@"TID",@"TotalRefundAmount",@"Token",@"TokenType",@"TransactionType",@"TxnExists",@"TxnID",@"TxnMessage",@"TxnStatus",@"ReqToken",@"PairingToken",@"PreCheckoutId",@"Cards",@"mpLightboxError"]) {
         NSString * value = [respParam valueForKey:key];
         
         if ([value isKindOfClass:[NSString class]] && value.length>0) {
-            [message appendFormat:@"%@: %@\n", key,value];
+            [message appendFormat:@"\"%@\": \"%@\",", key,value];
         } else if ([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSDictionary class]]) {
             NSError *error;
             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:value
@@ -204,13 +204,20 @@ typedef enum {
                 NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
                 jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
                 
-                [message appendFormat:@"%@: %@\n", key, jsonString];
+                [message appendFormat:@"\"%@\": \"%@\",", key, jsonString];
             }
             
         }
     }
-        
-    return message;
+    
+    [message appendFormat:@"}"];
+    
+    // serialize jsonstring to JSON
+    NSString * jsonString = message;
+    NSData * data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSData * json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    return json;
 }
 + (NSString *)displayRequestParam:(PaymentRequestPARAM *)reqParam {
     NSMutableString * message = [NSMutableString string];
