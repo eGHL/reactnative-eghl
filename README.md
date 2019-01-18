@@ -78,23 +78,15 @@ Getting result
 ```javascript
 componentWillMount(){
     if (Platform.OS === 'android') {
-      DeviceEventEmitter.addListener('eGHLReturn', function(e) {
-        console.log(e);
-
-        if (e.status) {
-          var jsonObj = JSON.parse(e.json);
-          console.log(jsonObj);
-
-          setTimeout(function(){
-            Alert.alert('Demo App', jsonObj["TxnMessage"], [{ text: 'OK' }]);
-          },500);
-        } else {
-          setTimeout(function(){
-            Alert.alert('Demo App', e.message, [{ text: 'OK' }]);
-          },500);
-
-        }
-      });
+      DeviceEventEmitter.addListener('eGHLReturn', function(returnObj) {
+        if (returnObj.status && typeof returnObj.result != 'undefined') {
+        // successfully fetch
+        alert(JSON.stringify(returnObj));
+      } else {
+        // error in linking
+        alert(JSON.stringify(returnObj));
+      }
+    });
     }
   }
 ```
@@ -104,15 +96,16 @@ componentWillMount(){
 ```javascript
 if (Platform.OS === 'ios') {
   const eGHLReturnEmitter = new NativeEventEmitter(NativeModules.EGHLReturn);
-    var subscription = eGHLReturnEmitter.addListener(
+  var subscription = eGHLReturnEmitter.addListener(
     'eGHLReturn', function(returnObj) {
-      console.log(returnObj.status);
-      if (returnObj.status) {
-        alert(JSON.stringify(returnObj.result));
+      if (returnObj.status && typeof returnObj.result != 'undefined') {
+        // successfully fetch
+        alert(JSON.stringify(returnObj));
       } else {
-        alert(JSON.stringify(returnObj.message));
+        // error in linking
+        alert(JSON.stringify(returnObj));
       }
-  });
+    });
 
 } 
 ```
@@ -121,8 +114,8 @@ Remember to remove notification
 
 ```javascript
 componentWillUnmount(){
-    if (!subscription) {
-        subscription.remove();
+    if (subscription) {
+      subscription.remove();
     }
 }
 ```
