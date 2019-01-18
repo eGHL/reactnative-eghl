@@ -79,6 +79,10 @@ RCT_EXPORT_METHOD(execute:(NSString *)paymentInfoJson)
     paypram.Password = validString(info[@"Password"]);
     paypram.ServiceID = validString(info[@"ServiceID"]);
     
+    if ([info objectForKey:@"QueryCount"]) {
+        paypram.queryCount = [info[@"QueryCount"] floatValue];
+    }
+    
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
 
     UIViewController *vc = keyWindow.rootViewController;

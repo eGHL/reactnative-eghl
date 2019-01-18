@@ -160,6 +160,9 @@ public class PaymentInfo {
     @SerializedName(Params.TRIGGER_RETURN_URL)
     private boolean triggerReturnURL = false;
 
+    @SerializedName(Params.QUERY_COUNT)
+    private int queryCount = 6;
+
     /**
      * Setter
      */
@@ -353,6 +356,10 @@ public class PaymentInfo {
 
     public void setMerchantUnApprovalURL(String merchantUnApprovalURL) {
         this.merchantUnApprovalURL = merchantUnApprovalURL;
+    }
+
+    public void setQueryCount(int queryCount) {
+        this.queryCount = queryCount;
     }
 
     public Boolean getProduction() {
@@ -550,5 +557,9 @@ public class PaymentInfo {
 
     public String getMerchantUnApprovalURL() {
         return merchantUnApprovalURL;
+    }
+
+    public int getQueryCount() {
+        return queryCount;
     }
 }

@@ -15,8 +15,8 @@
 - (void)QueryResult:(PaymentRespPARAM *)result;
 @end
 
-typedef void (^onPaymentRequest)(PaymentRequestPARAM* RequestData);
-typedef void (^onPaymentResp)(PaymentRespPARAM* ParamData);
+typedef void (^onPaymentRequest)(PaymentRequestPARAM* requestData);
+typedef void (^onPaymentResp)(PaymentRespPARAM* responseData);
 typedef void (^onSuccessResp)(NSString* SuccessData);
 typedef void (^onErrorCB)(NSString* errorCode, NSString* errorData, NSError * error);
 
@@ -94,7 +94,7 @@ typedef void (^onErrorCB)(NSString* errorCode, NSString* errorData, NSError * er
  */
 - (void)EGHLRequestReversal:(PaymentRequestPARAM *)PaymentPARAMCB successBlock:(onPaymentResp)successAnalyCB failedBlock:(onErrorCB)failedCB;
 
-/*
+/**
  *   @method  EGHLRequestRefund:(PaymentRequestPARAM *)PaymentPARAMCB successBlock:(onPaymentResp)successAnalyCB failedBlock:(onErrorCB)failedCB
  *
  *   @param   PaymentPARAMCB   A <code>PaymentPARAMCB</code> object.
@@ -105,7 +105,7 @@ typedef void (^onErrorCB)(NSString* errorCode, NSString* errorData, NSError * er
  */
 - (void)EGHLRequestRefund:(PaymentRequestPARAM *)PaymentPARAMCB successBlock:(onPaymentResp)successAnalyCB failedBlock:(onErrorCB)failedCB;
 
-/*
+/**
  *   @method  EGHLRequestCapture:(PaymentRequestPARAM *)PaymentPARAMCB successBlock:(onPaymentResp)successAnalyCB failedBlock:(onErrorCB)failedCB
  *
  *   @param   PaymentPARAMCB   A <code>PaymentPARAMCB</code> object.
@@ -116,14 +116,14 @@ typedef void (^onErrorCB)(NSString* errorCode, NSString* errorData, NSError * er
  */
 - (void)EGHLRequestCapture:(PaymentRequestPARAM *)PaymentPARAMCB successBlock:(onPaymentResp)successAnalyCB failedBlock:(onErrorCB)failedCB;
 
-/*
+/**
  *   @method  SaleViewStopLoad
  *
  *   @discussion    exit payment page.
  */
 - (void)saleViewStopLoad;
 
-/*
+/**
  *   @method  finalizeTransaction
  *
  *   @discussion    request SDK to finalize the current Transaction.
@@ -193,6 +193,7 @@ typedef void (^onErrorCB)(NSString* errorCode, NSString* errorData, NSError * er
 @property (strong, nonatomic) NSString * PromoCode;
 
 @property (nonatomic) CGFloat sdkTimeOut;
+@property (nonatomic) CGFloat queryCount;
 
 #pragma mark Masterpass fields
 @property (strong, nonatomic) NSString * ReqVerifier;

@@ -22,7 +22,7 @@ RCT_EXPORT_MODULE(EGHLReturn);
     dispatch_once(&onceToken, ^{
         sharedInstance = [super allocWithZone:zone];
     });
-    return sharedInstance;
+    return sharedInstance; 
 }
 
 - (NSArray<NSString *> *)supportedEvents

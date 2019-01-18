@@ -114,6 +114,8 @@ public class EGHLModule extends ReactContextBaseJavaModule {
                 .setParam6(paymentInfo.getParam6())
                 .setParam7(paymentInfo.getParam7())
                 .setEppMonth(paymentInfo.getEppMonth())
+                .setQueryCount(paymentInfo.getQueryCount())
+
                 .setPromoCode(paymentInfo.getPromoCode())
                 .setTriggerReturnURL(paymentInfo.isTriggerReturnURL());
 
