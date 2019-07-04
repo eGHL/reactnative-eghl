@@ -68,6 +68,7 @@ RCT_EXPORT_METHOD(execute:(NSString *)paymentInfoJson)
     paypram.CurrencyCode = validString(info[@"CurrencyCode"]);
     paypram.Token = validString(info[@"Token"]);
     paypram.TokenType = validString(info[@"TokenType"]);
+    paypram.IssuingBank = validString(info[@"IssuingBank"]);
 
     paypram.PaymentID = validString(info[@"PaymentID"]);
     paypram.OrderNumber = validString(info[@"OrderNumber"]);
