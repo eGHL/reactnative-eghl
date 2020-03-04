@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGHLPayment.h"
-
+#import <EGHL/EGHL.h>
 
 @interface ShowViewController : UIViewController
 

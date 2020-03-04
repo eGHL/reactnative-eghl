@@ -11,30 +11,6 @@
 #import <React/RCTEventEmitter.h>
 #import <React/RCTLog.h>
 
-@interface CallbackToJS: RCTEventEmitter <RCTBridgeModule>
-@end
-@implementation CallbackToJS
-RCT_EXPORT_MODULE(EGHLReturn);
-
-+ (id)allocWithZone:(NSZone *)zone {
-    static CallbackToJS *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [super allocWithZone:zone];
-    });
-    return sharedInstance; 
-}
-
-- (NSArray<NSString *> *)supportedEvents
-{
-    return @[@"eGHLReturn"];
-}
-
-- (void)postEvent:(NSDictionary *)info{
-    [self sendEventWithName:@"eGHLReturn" body:info];
-}
-@end
-
 typedef enum {
     tagAVExitPayment = 900
 }tagForAlerView;
@@ -58,89 +34,10 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    UIButton * button = [[UIButton alloc] initWithFrame:CGRectZero];
-    [button setImage:[UIImage imageNamed:@"navigationItemBack"] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithRed:0.04 green:0.38 blue:1 alpha:1.0] forState:UIControlStateNormal];
-
-    [button addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [button setClipsToBounds:YES];
-    
-    [button setTitle:@"Exit" forState:UIControlStateNormal];
-    [button sizeToFit];
-
-    [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-
-    /* ------------------
-     * [OPTIONAL]
-     * setup first Loading message
-     * ------------------ */
-    UILabel * messageLabel = [[UILabel alloc] init];
-    messageLabel.text = @"Redirecting to Payment Gateway...";
-    messageLabel.textColor = [UIColor whiteColor];
-//        self.loadingMessageLabel.backgroundColor = [UIColor blackColor];
-    [messageLabel sizeToFit];
-    
-    CGRect frame = messageLabel.frame;
-    frame.size.height = 200;
-    messageLabel.frame = frame;
-
-    self.eghlpay.loadingMessageLabel = messageLabel;
-    /* ------------------
-     * [OPTIONAL]
-     * setup finalise message
-     * ------------------ */
-    self.eghlpay.finaliseMessage = @"Verifying payment...";
-    /* ------------------
-     * [OPTIONAL]
-     * setup masterpass lightbox loading message
-     * ------------------ */
-    self.eghlpay.loadingMPLightBoxMessage = @"Redirecting to Masterpass...";
-    // ------------------
-    
-    [self.view addSubview:self.eghlpay];
-
-    [self.eghlpay paymentAPI:self.paypram successBlock:^(PaymentRespPARAM * result) {
-        [self dismissViewControllerAnimated:YES completion:^{
-            CallbackToJS *callback = [CallbackToJS allocWithZone: nil];
-            
-           NSMutableDictionary * resultMutDict = [@{
-                                             @"status":@YES
-                                             } mutableCopy];
-            
-            // serialize jsonstring to JSON
-            NSString *jsonString = [ShowViewController displayResponseParam:result];
-            resultMutDict[@"result"] = jsonString;
-            
-            [callback postEvent:resultMutDict];
-        }];
-    } failedBlock:^(NSString *errorCode, NSString *errorData, NSError * error) {
-        RCTLogInfo(@"errordata:%@ (%@)", errorData, errorCode);
-        
-        if (error) {
-            NSString * urlstring = [error userInfo][@"NSErrorFailingURLKey"];
-            if (urlstring) {
-                RCTLogInfo(@"NSErrorFailingURLKey:%@",urlstring);
-            }
-        }
-        
-        [self dismissViewControllerAnimated:YES completion:^{
-            CallbackToJS *callback = [CallbackToJS allocWithZone: nil];
-            
-            [callback postEvent:@{
-                                  @"status":@NO,
-                                  @"message":errorData
-                                  }];
-        }];
-    }];
 }
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    
-    self.eghlpay.frame = self.view.frame;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -158,33 +55,14 @@ typedef enum {
 
 
 - (void)backButtonPressed:(id)sender{
-    UIAlertView * alertExit = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to quit" message:@"Pressing BACK button will close and abandon the payment session." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Exit", nil];
-    
-    [alertExit setTag:tagAVExitPayment];
-    [alertExit show];
-}
+    //UIAlertView * alertExit = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to quit" message:@"Pressing BACK button will close and abandon the payment session." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Exit", nil];
 
-#pragma mark - UIAlertView delegate
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch ([alertView tag]) {
-        case tagAVExitPayment:
-        {
-            if (buttonIndex == 1) {
-//                [self.navigationController popViewControllerAnimated:YES];
-                [self.eghlpay finalizeTransaction];
-            }
-        }
-            break;
-            
-        default:
-            break;
-    }
+   // [alertExit setTag:tagAVExitPayment];
+   // [alertExit show];
 }
 
 #pragma mark - convenient method
-+ (NSData *)displayResponseParam:(PaymentRespPARAM *)respParam {
++ (NSString *)displayResponseParam:(PaymentRespPARAM *)respParam {
     NSMutableString * message = [NSMutableString string];
     
     [message appendFormat:@"{"];
@@ -212,12 +90,7 @@ typedef enum {
     
     [message appendFormat:@"}"];
     
-    // serialize jsonstring to JSON
-    NSString * jsonString = message;
-    NSData * data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSData * json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    
-    return json;
+    return message;
 }
 + (NSString *)displayRequestParam:(PaymentRequestPARAM *)reqParam {
     NSMutableString * message = [NSMutableString string];
@@ -235,7 +108,6 @@ typedef enum {
             }
         }
     }
-    
     return message;
 }
 
