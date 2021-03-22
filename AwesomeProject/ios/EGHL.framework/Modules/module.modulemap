@@ -1,0 +1,6 @@
+framework module EGHL {
+  umbrella header "EGHL.h"
+
+  export *
+  module * { export * }
+}
