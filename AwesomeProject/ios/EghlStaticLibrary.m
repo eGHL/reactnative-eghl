@@ -40,6 +40,7 @@ RCT_EXPORT_MODULE(EGHLReturn);
 @end
 @interface EghlStaticLibrary () <UIActionSheetDelegate>
 @property (nonatomic) BOOL realHost;
+@property (nonatomic) BOOL queryEMandate;
 @end
 @implementation EghlStaticLibrary
 // To export a module named
@@ -72,10 +73,15 @@ RCT_EXPORT_METHOD(execute:(NSString *)paymentInfoJson)
     self.realHost = realHost;
 }
 
+- (void)setupServiceForQueryEMandate:(BOOL)queryEMandate {
+    self.queryEMandate = queryEMandate;
+}
+
 - (void)presentSaleVC:(NSDictionary *)info {
     __block PaymentRequestPARAM *paypram = [[PaymentRequestPARAM alloc] init];
     
     [self setupServiceForRealHost:validBool(info[@"prod"])];
+    [self setupServiceForQueryEMandate:validBool(info[@"queryEmandate"])];
     
     paypram.TransactionType = validString(info[@"TransactionType"]);
     paypram.CustEmail = validString(info[@"CustEmail"]);
@@ -94,6 +100,7 @@ RCT_EXPORT_METHOD(execute:(NSString *)paymentInfoJson)
     paypram.IssuingBank = validString(info[@"IssuingBank"]);
     paypram.settingDict = @{
         EGHL_DEBUG_PAYMENT_URL: [NSNumber numberWithBool:!self.realHost],
+        EGHL_QUERY_EMANDATE   : [NSNumber numberWithBool:!self.queryEMandate],
     };
     paypram.PaymentID = validString(info[@"PaymentID"]);
     paypram.OrderNumber = validString(info[@"OrderNumber"]);

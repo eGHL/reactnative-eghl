@@ -22,7 +22,7 @@ typedef void (^onErrorCB)(NSString* errorCode, NSString* errorData, NSError * er
  *   @method  execute:(PaymentRequestPARAM *)paymentRequest fromViewController:(id)viewController successBlock:(onPaymentResp)successRequestCB failedBlock:(onErrorCB)failedCB
  *
  *   @param   paymentRequest    A <code>PaymentRequestPARAM</code> object.
- *                              include Amount,PaymentID,OrderNumber,MerchantName,ServiceID,PymtMethod,MerchantReturnURL,CustEmail,Password,CustPhone,
+ *                              include Amount,PaymentID,OrderNumber,MerchantName,ServiceID,PymtMethod,PaymentType,MerchantReturnURL,CustEmail,Password,CustPhone,
  *                                  CurrencyCode,CustName,LanguageCode,PaymentDesc,PageTimeout,CustIP,MerchantApprovalURL,CustMAC,MerchantUnApprovalURL,CardHolder,
  *                                  CardNo,CardExp,CardCVV2,BillAddr,ShipPostal,ShipCity,ShipRegion,ShipCountry,TokenType,Token,
  *                                  SessionID,IssuingBank,MerchantCallBackURL,B4TaxAmt,TaxAmt,Param6,Param7.

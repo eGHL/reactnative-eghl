@@ -10,6 +10,7 @@ import android.text.TextUtils;
  * eGHL's import
  */
 import com.eghl.sdk.EGHL;
+import com.eghl.sdk.params.Params;
 import com.eghl.sdk.params.PaymentParams;
 /** End eGHL */
 
@@ -40,8 +41,8 @@ import javax.annotation.Nullable;
 public class EGHLModule extends ReactContextBaseJavaModule {
     private static final String TAG = "EGHLModule";
 
-    public static final String PROD_HOST = "https://securepay.e-ghl.com/IPG/Payment.aspx";
-    public static final String TEST_HOST = "https://test2pay.ghl.com/IPGSG/Payment.aspx";
+    public static final String PROD_HOST = Params.PRODUCTION_PAYMENT_GATEWAY_URL;
+    public static final String TEST_HOST = Params.STAGING_PAYMENT_GATEWAY_URL;
 
     private PaymentParams.Builder params;
     private EGHL eghl;

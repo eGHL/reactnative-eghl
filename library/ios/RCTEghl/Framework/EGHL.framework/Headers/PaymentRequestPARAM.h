@@ -12,7 +12,7 @@
 /**
  * @description Parameter Class for GHL API
  *
- * <code> Amount, PaymentID, OrderNumber, MerchantName, ServiceID, PymtMethod, MerchantReturnURL, CustEmail, Password, CustPhone, CurrencyCode, CustName, LanguageCode, PaymentDesc, PageTimeout, CustIP, MerchantApprovalURL, CustMAC, MerchantUnApprovalURL, CardHolder, CardNo, CardExp, CardCVV2, BillAddr, BillPostal, BillCity, BillRegion, BillCountry, ShipAddr, ShipPostal, ShipCity, ShipRegion, ShipCountry, TokenType, Token, SessionID, IssuingBank, MerchantCallBackURL, B4TaxAmt, TaxAmt, Param6, Param7 </code>
+ * <code> Amount, PaymentID, OrderNumber, MerchantName, ServiceID, PymtMethod, PaymentType, MerchantReturnURL, CustEmail, Password, CustPhone, CurrencyCode, CustName, LanguageCode, PaymentDesc, PageTimeout, CustIP, MerchantApprovalURL, CustMAC, MerchantUnApprovalURL, CardHolder, CardNo, CardExp, CardCVV2, BillAddr, BillPostal, BillCity, BillRegion, BillCountry, ShipAddr, ShipPostal, ShipCity, ShipRegion, ShipCountry, TokenType, Token, SessionID, IssuingBank, MerchantCallBackURL, B4TaxAmt, TaxAmt, Param6, Param7 </code>
  *
  *
  * Masterpass Fields:
@@ -20,7 +20,6 @@
  * <code>ReqVerifier, PairingVerifier, CheckoutResourceURL, ReqToken, PairingToken</code>
  */
 @interface PaymentRequestPARAM : NSObject
--(void)eghlDebugURL:(NSString *)urlString;
 @property (strong, nonatomic) NSDictionary * settingDict;
 
 @property (strong, nonatomic) NSString * Amount;
@@ -29,6 +28,7 @@
 @property (strong, nonatomic) NSString * MerchantName;
 @property (strong, nonatomic) NSString * ServiceID;
 @property (strong, nonatomic) NSString * PymtMethod;
+@property (strong, nonatomic) NSString * PaymentType;
 @property (strong, nonatomic) NSString * MerchantReturnURL;
 @property (strong, nonatomic) NSString * CustEmail;
 @property (strong, nonatomic) NSString * Password;
@@ -39,6 +39,7 @@
 @property (strong, nonatomic) NSString * PaymentDesc;
 @property (strong, nonatomic) NSString * PageTimeout;
 @property (strong, nonatomic) NSString * CustIP;
+@property (strong, nonatomic) NSString * CustID;
 @property (strong, nonatomic) NSString * MerchantApprovalURL;
 @property (strong, nonatomic) NSString * CustMAC;
 @property (strong, nonatomic) NSString * MerchantUnApprovalURL;
@@ -51,6 +52,9 @@
 @property (strong, nonatomic) NSString * BillCity;
 @property (strong, nonatomic) NSString * BillRegion;
 @property (strong, nonatomic) NSString * BillCountry;
+
+@property (strong, nonatomic) NSString * HashValue;
+
 @property (strong, nonatomic) NSString * ShipAddr;
 @property (strong, nonatomic) NSString * ShipPostal;
 @property (strong, nonatomic) NSString * ShipCity;
